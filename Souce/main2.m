@@ -1,7 +1,6 @@
 clc
 close all
 clear
-
 disp    = @(x)imagesc(reshape(x,28,28)');
 sigmoid = @(x) 1./(1+exp(-x));
 softmax = @(x) exp(x)./repmat(sum(exp(x)),size(x,1),1);
@@ -20,7 +19,7 @@ for ii = 1:15
     for i = 1:m
         x = training_feature(:,i);
         y = zeros(k-1,1);
-         y(training_target(i)+1) = 1;
+        y(training_target(i)+1) = 1;
         h_x =  model(x,theta);
         gradi = alpha*grad(x,h_x,y);
         theta = theta -gradi ;
@@ -31,4 +30,4 @@ for ii = 1:15
 end
 
 load('testSet.mat');
-model(test_feature(:,1),theta)
+model(test_feature(:,1),theta);
