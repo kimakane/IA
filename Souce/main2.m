@@ -38,9 +38,11 @@ alpha = 0.00001;
 % filename = './model_save/model1';
 % save(filename,'theta');
 %% test
+test_feature = test_feature(:,1:1000) ;
+test_target  = test_target(1:1000);
 test_output = model(test_feature,theta); %% matrice avec les proba que image appartient a la classe
 [test_proba_max , test_predict_class] = max(test_output.',[],2);
 test_predict_err = (test_predict_class~= (test_target+1));
 err_img          = test_feature(:,test_predict_err==1);
 err_predic_proba = test_proba_max(test_predict_err==1);
-err_pourcent     = length(err_img)/length(test_target);  
+err_pourcent     = sum(test_predict_err)/length(test_target);  
