@@ -16,7 +16,7 @@ for k = 1:1000
     input = training_feature;
     h = sigmoid(input'*weight);
     weight = weight + alpha*sum(input*(target-h),2);
-    disp(k)
+    disp(k);
 end
 
 load('testSet.mat');
